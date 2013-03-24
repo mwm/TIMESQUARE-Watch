@@ -149,6 +149,8 @@ PROGMEM uint8_t
 #define MARQUEE_SUBMODE_TIME 0
 #define MARQUEE_SUBMODE_DATE 1
 
+#include "Watch_common.h"
+
 static int8_t
   marqueeSubmode = MARQUEE_SUBMODE_TIME,
   f              = 0,

@@ -51,6 +51,8 @@ PROGMEM uint8_t
  rightHalf[] = { 0, 1,  2,  3,  4,  5,  6,  7,  8,  8,  8,  8,  8,  8, 8,
                  8, 9, 10, 11, 12, 13, 14, 15,  0,  0,  0,  0,  0,  0, 0 };
 
+#include "Watch_common.h"
+
 // Time/date of a known new moon (UNIX time) - Dec 7 1999 22:32
 #define NEW_MOON 944605920
 #define LP       2551443L // Lunar period in seconds

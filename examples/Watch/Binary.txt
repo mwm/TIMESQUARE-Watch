@@ -1,0 +1,40 @@
+A binary - or packed/binary coded decimal - face for the Adafruit times
+square watch.
+
+When running, there are four displays that you toggle between by
+pushing the left button.
+
+    Year: The rows going down the matrix are:
+        Century
+	Year in century
+	Day of the week (Sunday = 1) and month
+	Day of the month
+	----- Unused
+	Hour. Either am/pm (two LEDs) & 12 hour or 24 hour
+	Minute
+	Second
+
+    Month: Every other row, starting at the top:
+        Day of the week and month (as above)
+	Day of the month
+	Hour
+	Minute 
+	Bottom row is a cylon cycle of once per second.
+
+    Day: Every other row, starting at the _second_ row:
+        Day of the month
+	Hour (as above)
+	Minute
+	Second
+
+    Hour:
+	Hour, in 2x2 blocks on the 2nd and 3rd row, 12 hour display
+	Minute, on the fifth row
+	Second, on the seventh row
+
+Note that the displays may be either pure binary, or packed (aka
+binary coded) decimal, where two-digit values (except months and
+12-hour time) are displayed as two decimal digits. The high order
+digit is in the first three bits of the row, and the low order digit
+is the last four bits. This is toggled with the right button.
+

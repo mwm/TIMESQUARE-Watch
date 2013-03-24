@@ -19,17 +19,23 @@ TIME DISPLAY MODE:
 #include <avr/sleep.h>
 #include <avr/power.h>
 #include <Wire.h>
-#include <RTClib.h>
 #include <Adafruit_GFX.h>
-#include <Watch.h>
 
-#define BATT_LOW_MV  2881 // Use reduced display below this voltage
+// Define EXTERN so those get defined in Watch_common.h
+#define EXTERN(a, b) a b
+#include "Watch_common.h"
 
 #define MODE_SET     0
 #define MODE_MARQUEE 1
 #define MODE_BINARY  2
 #define MODE_MOON    3
 #define MODE_BATTERY 4
+
+void mode_set(uint8_t) ;
+void mode_marquee(uint8_t) ;
+void mode_binary(uint8_t) ;
+void mode_moon(uint8_t) ;
+void mode_battery(uint8_t) ;
 
 void (*modeFunc[])(uint8_t) = {
   mode_set,
@@ -40,34 +46,9 @@ void (*modeFunc[])(uint8_t) = {
 };
 #define N_MODES (sizeof(modeFunc) / sizeof(modeFunc[0]))
 
-#define DIGIT_YEAR0  0
-#define DIGIT_YEAR1  1
-#define DIGIT_MON0   2
-#define DIGIT_MON1   3
-#define DIGIT_DAY0   4
-#define DIGIT_DAY1   5
-#define DIGIT_HR0    6
-#define DIGIT_HR1    7
-#define DIGIT_MIN0   8
-#define DIGIT_MIN1   9
-#define DIGIT_24    10
-#define DIGIT_SEC0  11
-#define DIGIT_SEC1  12
-uint8_t digit[13];
-int     curX;
 
-// Used by various display modes for smooth fade-out before sleep
-PROGMEM uint8_t
- fade[] =
-  {  0,  1,  1,  2,  4,  5,  8, 10, 13, 17, 22, 27, 32, 39, 46,
-    53, 62, 71, 82, 93,105,117,131,146,161,178,196,214,234,255 };
-
-Watch      watch(2, LED_PLEX_1, true);
-RTC_DS1307 RTC;
 uint8_t    mode      = MODE_MARQUEE,
            mode_last = MODE_MARQUEE;
-boolean    h24       = false; // 24-hour display mode
-uint16_t   fps       = 100;
 
 void setup() {
   Wire.begin();

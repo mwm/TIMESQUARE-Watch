@@ -233,11 +233,15 @@ symbols[] = { // Various symbols (Y/M/D etc.)
   limit[]       = {  9,  9,  1,  9,  3,  9,  2,  9,  5,  9,  1 },
   daysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
+#include "Watch_common.h"
+
 static uint8_t
   dNum    = 0, // Current digit # being edited
   symFade = 0; // Frame counter for symbol fade-out
 static int
   destX   = 0; // Final position of date/time display
+
+void flip() ;
 
 void mode_set(uint8_t action) {
 
@@ -459,7 +463,7 @@ void set() {
   RTC.adjust(dt);
 }
 
-static void loadDigits(int in, uint8_t idx) {
+void loadDigits(int in, uint8_t idx) {
   digit[idx    ] = in / 10;
   digit[idx + 1] = in - (digit[idx] * 10);
 }

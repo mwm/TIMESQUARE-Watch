@@ -11,6 +11,8 @@
 
 PROGMEM uint16_t mVtable[] = { 2884, 2886, 2890, 2900, 65535 };
 
+#include "Watch_common.h"
+
 void mode_battery(uint8_t action) {
 
   uint8_t  border, fill, i;
