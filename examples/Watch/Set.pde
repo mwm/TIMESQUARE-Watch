@@ -1,4 +1,4 @@
-PROGMEM uint8_t odoDigits[] = { // Odometer-style digits
+static const uint8_t PROGMEM odoDigits[] = { // Odometer-style digits
   0x00,0x00,0x00,0x15,0x4A,0x15,0xB7,0x23,0xB7,0xC8,0x15,0xC8,0x6E,0x15,0x6E,
   0x0A,0x23,0x0A,0x00,0x00,0x00,0x4A,0xFF,0x4A,0x99,0x4A,0x99,0xFF,0x00,0xFF,
   0x6E,0x15,0x6E,0x2C,0x15,0x2C,0x00,0x00,0x00,0x00,0x4A,0x00,0xFF,0x00,0xFF,
@@ -233,6 +233,8 @@ symbols[] = { // Various symbols (Y/M/D etc.)
   limit[]       = {  9,  9,  1,  9,  3,  9,  2,  9,  5,  9,  1 },
   daysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
+#include <RTClib.h>
+#include <Watch.h>
 #include "Watch_common.h"
 
 static uint8_t
@@ -401,7 +403,7 @@ void flip() {
   }
 }
 
-PROGMEM uint8_t
+static const uint8_t PROGMEM
   symX[]      = { 0, 5, 14, 9, 5, 19 }, // Starting column # in symbols bitmap
   symOffset[] = { 2, 0,  0, 0, 0,  0 }; // Add to X when drawing symbol
 

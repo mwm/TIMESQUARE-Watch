@@ -9,7 +9,7 @@
 // uses 32-bit unixtime() and thus likely innacurate in years 2038+.
 // This is for fun, not Real Science(tm).
 
-PROGMEM uint8_t
+static const uint8_t PROGMEM
  phases[] = {
   0x3B,0x1F,0x01,0x00,0x3E,0x26,0x03,0x00,0x3F,0x2E,0x06,0x00,0x42,0x3E,0x07,
   0x00,0x47,0x56,0x07,0x00,0x54,0x7A,0x07,0x00,0x81,0x88,0x07,0x00,0xCC,0x88,
@@ -51,6 +51,8 @@ PROGMEM uint8_t
  rightHalf[] = { 0, 1,  2,  3,  4,  5,  6,  7,  8,  8,  8,  8,  8,  8, 8,
                  8, 9, 10, 11, 12, 13, 14, 15,  0,  0,  0,  0,  0,  0, 0 };
 
+#include <RTClib.h>
+#include <Watch.h>
 #include "Watch_common.h"
 
 // Time/date of a known new moon (UNIX time) - Dec 7 1999 22:32

@@ -47,6 +47,17 @@ void (*modeFunc[])(uint8_t) = {
 #define N_MODES (sizeof(modeFunc) / sizeof(modeFunc[0]))
 
 
+<<<<<<< local
+=======
+// Used by various display modes for smooth fade-out before sleep
+const uint8_t PROGMEM
+ fade[] =
+  {  0,  1,  1,  2,  4,  5,  8, 10, 13, 17, 22, 27, 32, 39, 46,
+    53, 62, 71, 82, 93,105,117,131,146,161,178,196,214,234,255 };
+
+Watch      watch(2, LED_PLEX_1, true);
+RTC_DS1307 RTC;
+>>>>>>> other
 uint8_t    mode      = MODE_MARQUEE,
            mode_last = MODE_MARQUEE;
 
@@ -103,7 +114,7 @@ void loop() {
   watch.swapBuffers();
 }
 
-void blit(uint8_t *img, int iw, int ih, int sx, int sy, int dx, int dy,
+void blit(const uint8_t *img, int iw, int ih, int sx, int sy, int dx, int dy,
  int w, int h, uint8_t b) {
   uint16_t b1;
   uint8_t  shift, x, y;

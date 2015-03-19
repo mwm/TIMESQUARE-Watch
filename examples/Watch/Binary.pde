@@ -5,6 +5,8 @@
 #define BIT_SET  255
 
 #include <avr/power.h>
+#include <RTClib.h>
+#include <Watch.h>
 #include "Watch_common.h"
 
 // Value fetchers  library.
@@ -144,7 +146,8 @@ void mode_binary(uint8_t action) {
     b_clear     =  BIT_CLEAR >> (8 - depth);
   }
 
-  display_time(displays[mode], &RTC.now(), b_set, b_clear) ;
+  now = RTC.now();
+  display_time(displays[mode], &now, b_set, b_clear) ;
 }
 
 // Fetchers for values to display (OO ugliness. Don't ask.)
